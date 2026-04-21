@@ -158,7 +158,7 @@ export default function Home() {
         <div className="max-w-2xl mx-auto px-5 py-4 flex items-center justify-between">
           <div>
             <p className="text-[#FF5A1F] text-xs font-semibold tracking-widest uppercase mb-0.5">Ambassador</p>
-            <h1 className="text-white font-bold text-lg leading-tight">삼대오백 무상제품 신청</h1>
+            <h1 className="text-white font-bold text-lg leading-tight">삼대오백 월 무상제품 신청</h1>
           </div>
           {currentMonth && (
             <span className="bg-white/10 text-gray-300 text-xs px-3 py-1.5 rounded-full">
@@ -194,7 +194,7 @@ export default function Home() {
           <div className="pt-4">
             <div className="mb-8">
               <h2 className="text-2xl font-bold mb-2">본인 확인</h2>
-              <p className="text-gray-400 text-sm">가입 시 등록한 본명(실명)을 입력해주세요.</p>
+              <p className="text-gray-400 text-sm">본인의 성함(실명)을 입력해주세요.</p>
             </div>
 
             <div className="space-y-4">
