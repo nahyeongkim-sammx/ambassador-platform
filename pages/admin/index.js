@@ -149,9 +149,9 @@ export default function AdminDashboard() {
       {/* Header */}
       <header className="bg-white border-b px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="text-orange-500 font-bold text-lg">삼대오백</span>
+          <span className="text-orange-500 font-bold text-lg">삼대오백 앰버서더 허브</span>
           <span className="text-gray-300">|</span>
-          <span className="text-gray-600 text-sm">앰버서더 허브 | 어드민 대시보드</span>
+          <span className="text-gray-600 text-sm">어드민 대시보드</span>
         </div>
         <button
           onClick={logout}
