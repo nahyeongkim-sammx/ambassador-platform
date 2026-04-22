@@ -28,12 +28,12 @@ export default function AdminLogin() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
-      <Head><title>어드민 로그인 | 삼대오백</title></Head>
+      <Head><title>어드민 로그인 | 삼대오백 앰버서더 허브</title></Head>
 
       <div className="bg-white rounded-2xl shadow-sm border p-8 w-full max-w-sm">
         <div className="mb-7">
           <span className="inline-block bg-orange-50 text-orange-500 text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-3">Admin</span>
-          <h1 className="text-xl font-bold text-gray-900">삼대오백 어드민</h1>
+          <h1 className="text-xl font-bold text-gray-900">삼대오백 앰버서더 허브 ADMIN</h1>
           <p className="text-gray-400 text-sm mt-1">관리자 계정으로 로그인하세요.</p>
         </div>
 
