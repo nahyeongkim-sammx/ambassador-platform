@@ -86,11 +86,11 @@ export default function AdminProducts() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Head><title>제품 관리 | 어드민</title></Head>
+      <Head><title>어드민 제품관리 | 삼대오백 앰버서더 허브</title></Head>
 
       <header className="bg-white border-b px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Link href="/admin" className="text-orange-500 font-bold">삼대오백</Link>
+          <Link href="/admin" className="text-orange-500 font-bold">삼대오백 앰버서더 허브</Link>
           <span className="text-gray-300">|</span>
           <span className="text-gray-600 text-sm">제품 DB 관리</span>
         </div>
