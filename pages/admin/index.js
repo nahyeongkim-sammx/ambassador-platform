@@ -111,8 +111,8 @@ export default function AdminDashboard() {
     ambassadors.forEach(amb => {
       if (!submittedNames.has(amb.real_name)) {
         rows.push({
-          '본명': amb.real_name,
-          '인스타그램': amb.instagram || '',
+          '성함': amb.real_name,
+          '인스타그램 계정': amb.instagram || '',
           '연락처': amb.phone || '',
           '우편번호': amb.zipcode || '',
           '주소': amb.address || '',
@@ -144,14 +144,14 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Head><title>어드민 | 삼대오백 앰버서더</title></Head>
+      <Head><title>어드민 | 삼대오백 앰버서더 허브</title></Head>
 
       {/* Header */}
       <header className="bg-white border-b px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <span className="text-orange-500 font-bold text-lg">삼대오백</span>
           <span className="text-gray-300">|</span>
-          <span className="text-gray-600 text-sm">어드민 대시보드</span>
+          <span className="text-gray-600 text-sm">앰버서더 허브 | 어드민 대시보드</span>
         </div>
         <button
           onClick={logout}
@@ -362,7 +362,7 @@ export default function AdminDashboard() {
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b bg-gray-50">
-                      <th className="px-4 py-3 text-left text-gray-500 font-medium">본명</th>
+                      <th className="px-4 py-3 text-left text-gray-500 font-medium">성함</th>
                       <th className="px-4 py-3 text-left text-gray-500 font-medium">인스타그램</th>
                       <th className="px-4 py-3 text-left text-gray-500 font-medium">연락처</th>
                       <th className="px-4 py-3 text-left text-gray-500 font-medium">주소</th>
