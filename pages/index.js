@@ -157,8 +157,8 @@ export default function Home() {
       <header className="border-b border-white/10 sticky top-0 bg-[#0d0d0d]/95 backdrop-blur z-50">
         <div className="max-w-2xl mx-auto px-5 py-4 flex items-center justify-between">
           <div>
-            <p className="text-[#FF5A1F] text-xs font-semibold tracking-widest uppercase mb-0.5">Ambassador</p>
-            <h1 className="text-white font-bold text-lg leading-tight">삼대오백 월 무상제품 신청</h1>
+            <p className="text-[#FF5A1F] text-xs font-semibold tracking-widest uppercase mb-0.5">Ambassador Only</p>
+            <h1 className="text-white font-bold text-lg leading-tight">삼대오백 앰버서더 월 무상제품 신청</h1>
           </div>
           {currentMonth && (
             <span className="bg-white/10 text-gray-300 text-xs px-3 py-1.5 rounded-full">
@@ -199,7 +199,7 @@ export default function Home() {
 
             <div className="space-y-4">
               <div>
-                <label className="text-sm text-gray-400 mb-2 block">본명 (실명)</label>
+                <label className="text-sm text-gray-400 mb-2 block">성함 (실명)</label>
                 <input
                   type="text"
                   value={nameInput}
