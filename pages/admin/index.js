@@ -111,8 +111,8 @@ export default function AdminDashboard() {
     ambassadors.forEach(amb => {
       if (!submittedNames.has(amb.real_name)) {
         rows.push({
-          '성함': amb.real_name,
-          '인스타그램 계정': amb.instagram || '',
+          '본명': amb.real_name,
+          '인스타그램': amb.instagram || '',
           '연락처': amb.phone || '',
           '우편번호': amb.zipcode || '',
           '주소': amb.address || '',
@@ -132,6 +132,13 @@ export default function AdminDashboard() {
     XLSX.writeFile(wb, `삼대오백_앰버서더_${currentMonth}_무상제품신청.xlsx`)
   }
 
+  async function handleCancel(app) {
+    if (!confirm(`${app.real_name}님의 신청을 취소하시겠습니까?\n취소하면 해당 앰버서더가 다시 신청할 수 있습니다.`)) return
+    const { error } = await supabase.from('applications').delete().eq('id', app.id)
+    if (error) { alert('취소 중 오류가 발생했습니다.'); return }
+    await loadMonthData(currentMonth)
+  }
+
   const submittedCount = applications.length
   const totalCount = ambassadors.length
   const notSubmitted = ambassadors.filter(a => !applications.find(app => app.real_name === a.real_name))
@@ -144,12 +151,12 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Head><title>어드민 | 삼대오백 앰버서더 허브</title></Head>
+      <Head><title>어드민 | 삼대오백 앰버서더</title></Head>
 
       {/* Header */}
       <header className="bg-white border-b px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="text-orange-500 font-bold text-lg">삼대오백 앰버서더 허브</span>
+          <span className="text-orange-500 font-bold text-lg">삼대오백</span>
           <span className="text-gray-300">|</span>
           <span className="text-gray-600 text-sm">어드민 대시보드</span>
         </div>
@@ -242,6 +249,7 @@ export default function AdminDashboard() {
                           <th className="px-4 py-3 text-left text-gray-500 font-medium">무상제품 2</th>
                           <th className="px-4 py-3 text-left text-gray-500 font-medium">연락처</th>
                           <th className="px-4 py-3 text-left text-gray-500 font-medium">신청일시</th>
+                          <th className="px-4 py-3 text-left text-gray-500 font-medium"></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -260,11 +268,16 @@ export default function AdminDashboard() {
                               </td>
                               <td className="px-4 py-3 text-gray-500">{amb.phone || '-'}</td>
                               <td className="px-4 py-3 text-gray-400 text-xs">{new Date(app.submitted_at).toLocaleString('ko-KR')}</td>
+                              <td className="px-4 py-3">
+                                <button onClick={() => handleCancel(app)} className="text-xs text-red-400 hover:text-red-600 border border-red-200 hover:border-red-400 rounded-lg px-3 py-1.5 transition-colors">
+                                  신청 취소
+                                </button>
+                              </td>
                             </tr>
                           )
                         })}
                         {applications.length === 0 && (
-                          <tr><td colSpan={5} className="px-4 py-8 text-center text-gray-400">신청 내역이 없습니다.</td></tr>
+                          <tr><td colSpan={6} className="px-4 py-8 text-center text-gray-400">신청 내역이 없습니다.</td></tr>
                         )}
                       </tbody>
                     </table>
@@ -362,7 +375,7 @@ export default function AdminDashboard() {
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b bg-gray-50">
-                      <th className="px-4 py-3 text-left text-gray-500 font-medium">성함</th>
+                      <th className="px-4 py-3 text-left text-gray-500 font-medium">본명</th>
                       <th className="px-4 py-3 text-left text-gray-500 font-medium">인스타그램</th>
                       <th className="px-4 py-3 text-left text-gray-500 font-medium">연락처</th>
                       <th className="px-4 py-3 text-left text-gray-500 font-medium">주소</th>
