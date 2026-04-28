@@ -135,12 +135,12 @@ export default function Home() {
   if (isExpired) {
     return (
       <div className="min-h-screen bg-[#0d0d0d] flex items-center justify-center p-6">
-        <Head><title>삼대오백 앰버서더 무상제품 신청</title></Head>
+        <Head><title>삼대오백 앰버서더 허브</title></Head>
         <div className="text-center">
           <div className="text-5xl mb-6">⏰</div>
           <h2 className="text-2xl font-bold text-white mb-3">신청 마감되었습니다</h2>
           <p className="text-gray-400">이번 달 신청 기간이 종료되었습니다.<br/>다음 달에 다시 신청해주세요.</p>
-          {deadline && <p className="text-gray-600 text-sm mt-4">마감일: {deadline}</p>}
+          {deadline && <p className="text-gray-300 text-sm mt-4">마감일: {deadline}</p>}
         </div>
       </div>
     )
@@ -149,7 +149,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#0d0d0d] text-white">
       <Head>
-        <title>삼대오백 앰버서더 무상제품 신청</title>
+        <title>삼대오백 앰버서더 허브</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
@@ -221,8 +221,8 @@ export default function Home() {
             </div>
 
             {deadline && (
-              <p className="mt-6 text-center text-gray-600 text-xs">
-                신청 마감일: <span className="text-gray-400">{deadline}</span>
+              <p className="mt-6 text-center text-gray-300 text-sm">
+                신청 마감일: <span className="text-gray-200 font-medium">{deadline}</span>
               </p>
             )}
           </div>
