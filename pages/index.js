@@ -157,8 +157,8 @@ export default function Home() {
       <header className="border-b border-white/10 sticky top-0 bg-[#0d0d0d]/95 backdrop-blur z-50">
         <div className="max-w-2xl mx-auto px-5 py-4 flex items-center justify-between">
           <div>
-            <p className="text-[#FF5A1F] text-xs font-semibold tracking-widest uppercase mb-0.5">Ambassador Only</p>
-            <h1 className="text-white font-bold text-lg leading-tight">삼대오백 앰버서더 월 무상제품 신청</h1>
+            <p className="text-[#FF5A1F] text-xs font-semibold tracking-widest uppercase mb-0.5">Ambassador</p>
+            <h1 className="text-white font-bold text-lg leading-tight">삼대오백 무상제품 신청</h1>
           </div>
           {currentMonth && (
             <span className="bg-white/10 text-gray-300 text-xs px-3 py-1.5 rounded-full">
@@ -194,12 +194,12 @@ export default function Home() {
           <div className="pt-4">
             <div className="mb-8">
               <h2 className="text-2xl font-bold mb-2">본인 확인</h2>
-              <p className="text-gray-400 text-sm">본인의 성함(실명)을 입력해주세요.</p>
+              <p className="text-gray-400 text-sm">가입 시 등록한 본명(실명)을 입력해주세요.</p>
             </div>
 
             <div className="space-y-4">
               <div>
-                <label className="text-sm text-gray-400 mb-2 block">성함 (실명)</label>
+                <label className="text-sm text-gray-400 mb-2 block">본명 (실명)</label>
                 <input
                   type="text"
                   value={nameInput}
@@ -400,7 +400,17 @@ export default function Home() {
                   <span className="text-[#FF5A1F] text-3xl">✓</span>
                 </div>
                 <h2 className="text-2xl font-bold mb-2">신청 완료!</h2>
-                <p className="text-gray-400 mb-8">무상제품 신청이 완료되었습니다.<br/>배송 시 등록된 주소로 발송됩니다.</p>
+                <p className="text-gray-400 mb-5">무상제품 신청이 완료되었습니다.<br/>배송 시 등록된 주소로 발송됩니다.</p>
+
+                <div className="bg-yellow-950/30 border border-yellow-600/40 rounded-2xl p-5 text-left mb-8 max-w-sm mx-auto">
+                  <p className="text-yellow-400 text-xs font-semibold mb-2">
+                    ⚠️ 주소 변경 안내 ⚠️
+                  </p>
+                  <p className="text-yellow-200/80 text-xs leading-relaxed">
+                    배송주소 변경 시, 사전에 DM을 통해 요청해 주셔야 합니다.<br/>
+                    변경 주소 미 전달로 인한 오배송에 대해서는 제품 재발송이 어려운 점 참고 부탁 드립니다.
+                  </p>
+                </div>
 
                 <div className="bg-white/5 border border-white/10 rounded-2xl p-5 text-left space-y-3 max-w-sm mx-auto">
                   <p className="text-gray-400 text-xs font-semibold uppercase tracking-wide">신청 내역</p>
