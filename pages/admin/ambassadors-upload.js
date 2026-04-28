@@ -33,12 +33,10 @@ export default function AmbassadorsUpload() {
 
     const rows = preview.map(row => ({
       real_name: row['본명'] || row['이름'] || '',
-      instagram: row['인스타그램'] || row['instagram'] || '',
       phone: String(row['연락처'] || row['전화번호'] || ''),
-      email: row['이메일'] || row['email'] || '',
       zipcode: String(row['우편번호'] || ''),
       address: row['주소'] || '',
-      address_detail: row['상세주소'] || '',
+      instagram: row['인스타그램'] || row['instagram'] || '',
     })).filter(r => r.real_name)
 
     const { error } = await supabase
@@ -55,7 +53,7 @@ export default function AmbassadorsUpload() {
   }
 
   function downloadTemplate() {
-    const template = [{ '본명': '홍길동', '인스타그램': 'honggildong', '연락처': '01012345678', '이메일': 'hong@email.com', '우편번호': '06000', '주소': '서울시 강남구 테헤란로 123', '상세주소': '456호' }]
+    const template = [{ '본명': '홍길동', '연락처': '01012345678', '우편번호': '06000', '주소': '서울시 강남구 테헤란로 123', '인스타그램': 'honggildong' }]
     const ws = XLSX.utils.json_to_sheet(template)
     const wb = XLSX.utils.book_new()
     XLSX.utils.book_append_sheet(wb, ws, '앰버서더')
@@ -104,11 +102,9 @@ export default function AmbassadorsUpload() {
             {[
               { col: '본명', req: true, ex: '홍길동' },
               { col: '연락처', req: true, ex: '01012345678' },
-              { col: '주소', req: false, ex: '서울시 강남구...' },
-              { col: '상세주소', req: false, ex: '101호' },
               { col: '우편번호', req: false, ex: '06000' },
+              { col: '주소', req: false, ex: '서울시 강남구 테헤란로 123' },
               { col: '인스타그램', req: false, ex: 'honggil' },
-              { col: '이메일', req: false, ex: 'hong@email.com' },
             ].map(({ col, req, ex }) => (
               <div key={col} className="bg-gray-50 rounded-xl p-3">
                 <div className="flex items-center gap-1.5 mb-1">
