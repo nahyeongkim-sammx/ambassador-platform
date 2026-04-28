@@ -115,15 +115,17 @@ export default function AdminDashboard() {
 
   function exportExcel() {
     const targetApps = filterMode === 'range' ? rangeApplications : applications
+    const label = filterMode === 'range' ? `${dateFrom}~${dateTo}` : currentMonth
+
+    // ── 시트1: 신청내역 ──────────────────────────────
     const rows = targetApps.map(app => {
       const amb = getAmbassadorInfo(app.real_name)
       return {
+        '인스타그램': amb.instagram ? `@${amb.instagram}` : '',
         '본명': app.real_name,
-        '인스타그램': amb.instagram || '',
         '연락처': amb.phone || '',
         '우편번호': amb.zipcode || '',
         '주소': amb.address || '',
-        '상세주소': amb.address_detail || '',
         '무상제품1': app.product1?.name || '',
         '무상제품1 전산명': app.product1?.sku || '',
         '무상제품2': app.product2?.name || '',
@@ -137,12 +139,11 @@ export default function AdminDashboard() {
     ambassadors.forEach(amb => {
       if (!submittedNames.has(amb.real_name)) {
         rows.push({
+          '인스타그램': amb.instagram ? `@${amb.instagram}` : '',
           '본명': amb.real_name,
-          '인스타그램': amb.instagram || '',
           '연락처': amb.phone || '',
           '우편번호': amb.zipcode || '',
           '주소': amb.address || '',
-          '상세주소': amb.address_detail || '',
           '무상제품1': '미신청',
           '무상제품1 전산명': '',
           '무상제품2': '미신청',
@@ -152,10 +153,38 @@ export default function AdminDashboard() {
       }
     })
 
-    const ws = XLSX.utils.json_to_sheet(rows)
+    // ── 시트2: ERP 배송주문 양식 (신청완료 건만, 제품별 행 분리) ──
+    const erpRows = []
+    targetApps.forEach(app => {
+      const amb = getAmbassadorInfo(app.real_name)
+      if (app.product1?.sku) {
+        erpRows.push({
+          '주문제품': app.product1.sku,
+          '수량': 1,
+          '수령인': app.real_name,
+          '연락처': amb.phone || '',
+          '우편번호': amb.zipcode || '',
+          '주소': amb.address || '',
+        })
+      }
+      if (app.product2?.sku) {
+        erpRows.push({
+          '주문제품': app.product2.sku,
+          '수량': 1,
+          '수령인': app.real_name,
+          '연락처': amb.phone || '',
+          '우편번호': amb.zipcode || '',
+          '주소': amb.address || '',
+        })
+      }
+    })
+
     const wb = XLSX.utils.book_new()
-    XLSX.utils.book_append_sheet(wb, ws, `${currentMonth} 신청내역`)
-    XLSX.writeFile(wb, `삼대오백_앰버서더_${currentMonth}_무상제품신청.xlsx`)
+    const ws1 = XLSX.utils.json_to_sheet(rows)
+    const ws2 = XLSX.utils.json_to_sheet(erpRows)
+    XLSX.utils.book_append_sheet(wb, ws1, '신청내역')
+    XLSX.utils.book_append_sheet(wb, ws2, 'ERP 배송주문')
+    XLSX.writeFile(wb, `삼대오백_앰버서더_${label}_무상제품신청.xlsx`)
   }
 
   async function handleCancel(app) {
