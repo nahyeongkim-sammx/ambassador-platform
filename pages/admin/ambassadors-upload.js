@@ -102,8 +102,8 @@ export default function AmbassadorsUpload() {
             {[
               { col: '본명', req: true, ex: '홍길동' },
               { col: '연락처', req: true, ex: '01012345678' },
-              { col: '우편번호', req: false, ex: '06000' },
-              { col: '주소', req: false, ex: '서울시 강남구 테헤란로 123' },
+              { col: '우편번호', req: true, ex: '06000' },
+              { col: '주소', req: true, ex: '서울시 강남구 테헤란로 123' },
               { col: '인스타그램', req: false, ex: 'honggil' },
             ].map(({ col, req, ex }) => (
               <div key={col} className="bg-gray-50 rounded-xl p-3">
