@@ -16,6 +16,7 @@ export default function AdminDashboard() {
   const [tab, setTab] = useState('applications')
   const [savingDeadline, setSavingDeadline] = useState(false)
   const [newMonth, setNewMonth] = useState('')
+  const [lastUploaded, setLastUploaded] = useState('')
   const [filterMode, setFilterMode] = useState('month') // 'month' | 'range'
   const [dateFrom, setDateFrom] = useState('')
   const [dateTo, setDateTo] = useState('')
@@ -37,6 +38,8 @@ export default function AdminDashboard() {
     if (settingsRes.data) {
       const dl = settingsRes.data.find(r => r.key === 'deadline')?.value || ''
       month = settingsRes.data.find(r => r.key === 'current_month')?.value || ''
+      const ul = settingsRes.data.find(r => r.key === 'last_ambassador_upload')?.value || ''
+      if (ul) setLastUploaded(ul)
       setDeadline(dl)
       setDeadlineInput(dl)
       setCurrentMonth(month)
@@ -180,7 +183,7 @@ export default function AdminDashboard() {
       {/* Header */}
       <header className="bg-white border-b px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="text-orange-500 font-bold text-lg">삼대오백</span>
+          <span className="text-orange-500 font-bold text-lg">삼대오백 앰버서더 허브</span>
           <span className="text-gray-300">|</span>
           <span className="text-gray-600 text-sm">어드민 대시보드</span>
         </div>
@@ -470,9 +473,20 @@ export default function AdminDashboard() {
         {tab === 'ambassadors' && (
           <div>
             <div className="flex items-center justify-between mb-4">
-              <p className="text-gray-500 text-sm">총 {ambassadors.length}명 | 배송정보 포함</p>
-              <a href="/admin/ambassadors-upload" className="text-orange-500 text-sm hover:underline">
-                → 엑셀로 업로드
+              <div>
+                <p className="text-gray-700 text-sm font-medium">총 {ambassadors.length}명</p>
+                {lastUploaded && (
+                  <p className="text-gray-400 text-xs mt-0.5">최신 업데이트일: {new Date(lastUploaded).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                )}
+              </div>
+              <a
+                href="/admin/ambassadors-upload"
+                className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded-lg text-sm transition-colors"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                </svg>
+                엑셀로 업로드
               </a>
             </div>
             <div className="bg-white rounded-xl border overflow-hidden">
