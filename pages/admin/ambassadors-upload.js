@@ -46,6 +46,8 @@ export default function AmbassadorsUpload() {
     if (error) {
       setResult({ success: false, message: '업로드 실패: ' + error.message })
     } else {
+      // 업로드 날짜 저장
+      await supabase.from('settings').upsert({ key: 'last_ambassador_upload', value: new Date().toISOString() })
       setResult({ success: true, message: `${rows.length}명 업로드 완료! (중복 본명은 덮어쓰기 됩니다)` })
     }
   }
