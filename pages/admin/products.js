@@ -88,7 +88,7 @@ export default function AdminProducts() {
     <div className="min-h-screen bg-gray-50">
       <Head><title>제품 DB 관리 | 삼대오백 앰버서더 허브</title></Head>
 
-      <header className="bg-white border-b px-6 py-4 flex items-center justify-between">
+      <header className="bg-white border-b px-6 py-5 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Link href="/admin" className="text-orange-500 font-bold text-lg">삼대오백 앰버서더 허브</Link>
           <span className="text-gray-200">|</span>
