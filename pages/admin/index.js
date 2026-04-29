@@ -179,11 +179,35 @@ export default function AdminDashboard() {
       }
     })
 
+    // ── 시트3: 요약VER (반복 브랜드명 제거 + 두 제품 한 셀 합치기) ──
+    const stripBrand = (name) => {
+      if (!name) return ''
+      // 제거할 반복 브랜드명 목록
+      return name
+        .replace(/삼대오백/g, '')
+        .replace(/SAMDAE500/gi, '')
+        .trim()
+    }
+
+    const summaryRows = targetApps.map(app => {
+      const amb = getAmbassadorInfo(app.real_name)
+      const p1 = stripBrand(app.product1?.name)
+      const p2 = stripBrand(app.product2?.name)
+      const combined = [p1, p2].filter(Boolean).join(', ')
+      return {
+        '인스타그램': amb.instagram ? `@${amb.instagram}` : '',
+        '본명': app.real_name,
+        '무상제품 (2개)': combined,
+      }
+    })
+
     const wb = XLSX.utils.book_new()
     const ws1 = XLSX.utils.json_to_sheet(rows)
     const ws2 = XLSX.utils.json_to_sheet(erpRows)
+    const ws3 = XLSX.utils.json_to_sheet(summaryRows)
     XLSX.utils.book_append_sheet(wb, ws1, '신청내역')
     XLSX.utils.book_append_sheet(wb, ws2, 'ERP 배송주문')
+    XLSX.utils.book_append_sheet(wb, ws3, '요약VER')
     XLSX.writeFile(wb, `삼대오백_앰버서더_${label}_무상제품신청.xlsx`)
   }
 
