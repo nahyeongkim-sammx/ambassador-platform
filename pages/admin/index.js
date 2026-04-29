@@ -293,12 +293,12 @@ export default function AdminDashboard() {
                     onChange={e => { setCurrentMonth(e.target.value); loadMonthData(e.target.value) }}
                     className="border rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-400"
                   >
-                    {Array.from({ length: 12 }, (_, i) => {
+                    {Array.from({ length: 15 }, (_, i) => {
                       const d = new Date()
-                      d.setMonth(d.getMonth() - i)
+                      d.setMonth(d.getMonth() - 12 + i + 1)
                       const val = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
                       return <option key={val} value={val}>{val}</option>
-                    })}
+                    }).reverse()}
                   </select>
                   <span className="text-gray-400 text-sm">기준으로 조회</span>
                 </div>
