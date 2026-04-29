@@ -194,7 +194,7 @@ export default function Home() {
           <div className="pt-4">
             <div className="mb-8">
               <h2 className="text-2xl font-bold mb-2">본인 확인</h2>
-              <p className="text-gray-400 text-sm">가입 시 등록한 본명(실명)을 입력해주세요.</p>
+              <p className="text-gray-400 text-sm">본명(실명)을 입력해주세요.</p>
             </div>
 
             <div className="space-y-4">
