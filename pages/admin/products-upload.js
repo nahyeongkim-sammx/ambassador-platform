@@ -158,11 +158,11 @@ export default function ProductsUpload() {
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
             {[
               { col: '카테고리1', req: true, ex: '프로틴/탄수화물' },
-              { col: '카테고리2', req: false, ex: 'WPI' },
-              { col: '카테고리3', req: false, ex: '1kg' },
+              { col: '카테고리2', req: true, ex: 'WPI' },
+              { col: '카테고리3', req: true, ex: '1kg' },
               { col: '제품명', req: true, ex: 'WPI 웨이 프로틴 초코 1kg' },
               { col: '전산명(SKU)', req: true, ex: '삼대오백WPI포대1kg초코' },
-              { col: '이미지URL', req: false, ex: 'https://...' },
+              { col: '이미지URL', req: true, ex: 'https://...' },
             ].map(({ col, req, ex }) => (
               <div key={col} className="bg-gray-50 rounded-xl p-3">
                 <div className="flex items-center gap-1.5 mb-1">
