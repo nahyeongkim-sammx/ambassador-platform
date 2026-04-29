@@ -30,6 +30,14 @@ export default function ProductsUpload() {
     reader.readAsBinaryString(file)
   }
 
+  function downloadTemplate() {
+    const template = [{ '카테고리': '프로틴', '제품명': 'WPI 웨이 프로틴 초코 1kg', '전산명(SKU)': '삼대오백WPI포대1kg초코', '이미지URL': '' }]
+    const ws = XLSX.utils.json_to_sheet(template)
+    const wb = XLSX.utils.book_new()
+    XLSX.utils.book_append_sheet(wb, ws, '제품DB')
+    XLSX.writeFile(wb, '제품DB_업로드_템플릿.xlsx')
+  }
+
   async function handleUpload() {
     if (!preview.length) return
     setUploading(true)
@@ -37,7 +45,7 @@ export default function ProductsUpload() {
     const rows = preview.map(row => ({
       name: row['제품명'] || '',
       sku: row['전산명(SKU)'] || row['전산명'] || row['SKU'] || '',
-      category1: row['카테고리1'] || row['카테고리'] || '',
+      category1: row['카테고리'] || row['카테고리1'] || '',
       category2: row['카테고리2'] || '',
       category3: row['카테고리3'] || '',
       image_url: row['이미지URL'] || row['이미지'] || '',
@@ -126,7 +134,7 @@ export default function ProductsUpload() {
         </div>
       )}
 
-      <header className="bg-white border-b px-6 py-4 flex items-center justify-between">
+      <header className="bg-white border-b px-6 py-5 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Link href="/admin" className="text-orange-500 font-bold text-lg">삼대오백 앰버서더 허브</Link>
           <span className="text-gray-200">|</span>
@@ -155,11 +163,9 @@ export default function ProductsUpload() {
         {/* 컬럼 안내 */}
         <div className="bg-white rounded-2xl border p-6 mb-5">
           <p className="text-sm font-semibold text-gray-700 mb-4">엑셀 컬럼 형식 안내</p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
             {[
-              { col: '카테고리1', req: true, ex: '프로틴/탄수화물' },
-              { col: '카테고리2', req: true, ex: 'WPI' },
-              { col: '카테고리3', req: true, ex: '1kg' },
+              { col: '카테고리', req: true, ex: '프로틴/탄수화물' },
               { col: '제품명', req: true, ex: 'WPI 웨이 프로틴 초코 1kg' },
               { col: '전산명(SKU)', req: true, ex: '삼대오백WPI포대1kg초코' },
               { col: '이미지URL', req: true, ex: 'https://...' },
@@ -173,7 +179,18 @@ export default function ProductsUpload() {
               </div>
             ))}
           </div>
-          <p className="text-xs text-gray-400">💡 보내주신 파일 형식 그대로 올리시면 돼요!</p>
+          <div className="flex items-center justify-between">
+            <p className="text-xs text-gray-400">💡 아래 템플릿 양식에 맞춰 작성 후 업로드하세요.</p>
+            <button
+              onClick={downloadTemplate}
+              className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium px-4 py-2.5 rounded-xl text-sm transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              템플릿 다운로드
+            </button>
+          </div>
         </div>
 
         {/* 업로드 옵션 */}
