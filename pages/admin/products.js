@@ -86,17 +86,25 @@ export default function AdminProducts() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Head><title>어드민 제품관리 | 삼대오백 앰버서더 허브</title></Head>
+      <Head><title>제품 관리 | 어드민</title></Head>
 
       <header className="bg-white border-b px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Link href="/admin" className="text-orange-500 font-bold">삼대오백 앰버서더 허브</Link>
+          <Link href="/admin" className="text-orange-500 font-bold">삼대오백</Link>
           <span className="text-gray-300">|</span>
           <span className="text-gray-600 text-sm">제품 DB 관리</span>
         </div>
-        <button onClick={openNew} className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-semibold">
-          + 제품 추가
-        </button>
+        <div className="flex gap-2">
+          <Link href="/admin/products-upload" className="flex items-center gap-2 border border-orange-400 text-orange-500 hover:bg-orange-50 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+            </svg>
+            일괄 업로드
+          </Link>
+          <button onClick={openNew} className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-semibold">
+            + 제품 추가
+          </button>
+        </div>
       </header>
 
       <div className="max-w-6xl mx-auto px-6 py-6">
