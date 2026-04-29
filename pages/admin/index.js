@@ -235,7 +235,7 @@ export default function AdminDashboard() {
       <Head><title>어드민 | 삼대오백 앰버서더</title></Head>
 
       {/* Header */}
-      <header className="bg-white border-b px-6 py-4 flex items-center justify-between">
+      <header className="bg-white border-b px-6 py-5 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <span className="text-orange-500 font-bold text-lg">삼대오백 앰버서더 허브</span>
           <span className="text-gray-300">|</span>
